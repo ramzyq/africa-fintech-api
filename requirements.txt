@@ -5,4 +5,8 @@ aiosqlite==0.22.1
 pydantic-settings==2.15.0
 python-jose[cryptography]==3.5.0
 passlib[bcrypt]==1.7.4
+# Mergio: passlib 1.7.4 breaks with bcrypt>=4.1, so pin it
+bcrypt==4.0.1
+# Mergio: needed by pydantic's EmailStr
+email-validator==2.4.0
 python-multipart==0.0.32
