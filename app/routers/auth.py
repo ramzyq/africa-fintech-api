@@ -65,7 +65,7 @@ async def register(request: RegisterRequest, db: AsyncSession = Depends(get_db))
     """Register a new user and auto-provision a wallet."""
     result = await db.execute(select(User).where(User.email == request.email))
     if result.scalar_one_or_none():
-        raise HTTPException(status_code=400, detail="Email already registered")
+        raise HTTPException(status_code=409, detail="Email already registered")
 
     hashed = await _hash_password(request.password)
     user = User(
